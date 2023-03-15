@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "64058760025",
+    "project_id": "cefmorsi-d8ffc",
+    "storage_bucket": "cefmorsi-d8ffc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:64058760025:android:0b4b63113b7e49a3da4a48",
+        "android_client_info": {
+          "package_name": "com.example.flutter_app_testing"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "64058760025-v3ssdljds8c2ervvfccm4eqhcvaan62h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMPwXnsn5IhqUBO1oCVRaA5CocZnbqEFQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "64058760025-v3ssdljds8c2ervvfccm4eqhcvaan62h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
