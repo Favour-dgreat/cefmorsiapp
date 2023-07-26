@@ -1,9 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app_testing/src/features/authentication/screens/login/login.dart';
-import 'package:flutter_app_testing/src/features/authentication/screens/login/login_or_register.dart';
+import 'package:CMI/src/features/authentication/screens/login/login_or_register.dart';
 
-import '../../../../../Screens/apphome.dart';
+import '../../../../../../Screens/apphome.dart';
 
 class AuthPage extends StatelessWidget {
   static const String id = 'auth_screen';

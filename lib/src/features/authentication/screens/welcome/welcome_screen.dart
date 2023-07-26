@@ -1,11 +1,7 @@
-
 import 'package:flutter/material.dart';
-import '../../controllers/firebase_exceptions.dart';
-import '../../../../utils/loader.dart';
 import '../../controllers/auth_service.dart';
 import '../login/login.dart';
-import '../../../../utils/validator.dart';
-import '../../../../common_widgets/snack_bar.dart';
+
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -24,10 +20,10 @@ class HomeScreen extends StatelessWidget {
             children: [
               Container(
                 width: 100,
-                height: 100,
+                height: 50,
                 decoration: const BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage('assets/cefmorsilogo.png'),
+                    image: AssetImage('assets/images/cefmorsi.png'),
                   ),
                 ),
               ),

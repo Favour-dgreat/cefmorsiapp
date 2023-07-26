@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 
 class MyTextField extends StatelessWidget {
   final controller;
   final bool obscureText;
   final decoration;
   // ignore: non_constant_identifier_names
-  const MyTextField({Key? key, required this.controller, required this.obscureText, required this.decoration,required this.onPressed  }) : super(key: key);
+  const MyTextField({Key? key, required this.controller, required this.obscureText, required this.decoration, }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +15,7 @@ class MyTextField extends StatelessWidget {
         controller: controller,
         obscureText: obscureText,
         decoration: decoration,
-        onPressed: onPressed,
+
       ),
       );
 

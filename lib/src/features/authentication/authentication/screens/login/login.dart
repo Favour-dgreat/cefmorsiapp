@@ -1,18 +1,17 @@
-import 'package:CMI/src/constants/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:CMI/src/common_widgets/square_tile.dart';
 import 'package:CMI/src/features/authentication/controllers/auth_service.dart';
 import 'package:CMI/src/features/authentication/screens/register/register.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../../../common_widgets/my_button.dart';
-import '../../../../common_widgets/my_textfield.dart';
-import '../../../../common_widgets/snack_bar.dart';
-import '../../../../constants/image_strings.dart';
-import '../../../../utils/loader.dart';
-import '../../controllers/firebase_exceptions.dart';
-import '../Reset_Password/reset_password.dart';
-import '../welcome/welcome_screen.dart';
+import '../../../../../common_widgets/my_button.dart';
+import '../../../../../common_widgets/my_textfield.dart';
+import '../../../../../common_widgets/snack_bar.dart';
+import '../../../../../constants/image_strings.dart';
+import '../../../controllers/firebase_exceptions.dart';
+import '../../../screens/Reset_Password/reset_password.dart';
+import '../../../screens/welcome/welcome_screen.dart';
+import '../../../../../utils/loader.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String id = 'login_screen';
@@ -175,28 +174,16 @@ class _LoginScreenState extends State<LoginScreen> {
                     Text('Remember me'),
                     GestureDetector(
                       onTap: () {
-                        
                       },
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
                           horizontal: 30.0,
                         ),
-                        child: TextButton(
-                          onPressed: () {
-                            showBottomSheet(context: context, builder: (context) => Container(
-                              padding: EdgeInsets.all(tDefaultSize),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                              ),
-                            ),
-                            );
-                          },
-                          child: Text(
-                            'Forgot Password?',
-                            style: TextStyle(
-                              fontSize: 15,
-                              color: HexColor("#FA172C"),
-                            ),
+                        child: Text(
+                          'Forgot Password?',
+                          style: TextStyle(
+                            fontSize: 15,
+                            color: HexColor("#FA172C"),
                           ),
                         ),
                       ),

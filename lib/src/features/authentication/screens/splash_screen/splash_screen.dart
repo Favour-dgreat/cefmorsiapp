@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_testing/src/constants/image_strings.dart';
-import 'package:flutter_app_testing/src/constants/sizes.dart';
-import 'package:flutter_app_testing/src/constants/text_strings.dart';
+import 'package:CMI/src/constants/image_strings.dart';
+import 'package:CMI/src/constants/sizes.dart';
+import 'package:CMI/src/constants/text_strings.dart';
 
 import '../../../../constants/colors.dart';
 class SplashScreen extends StatelessWidget {

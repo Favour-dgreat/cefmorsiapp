@@ -1,18 +1,24 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:flutter_app_testing/src/features/authentication/controllers/firebase_exceptions.dart';
+import 'package:rxdart/rxdart.dart';
+import 'package:CMI/src/features/authentication/controllers/firebase_exceptions.dart';
+
 class AuthenticationService {
-  static final _auth = FirebaseAuth.instance;
+  final _auth = FirebaseAuth.instance;
   static late AuthStatus _status;
+
 
   Future<AuthStatus> createAccount({
     required String email,
     required String password,
     required String name,
-  }) async{
+  }) async {
     try {
-      UserCredential newUser = await _auth.createUserWithEmailAndPassword(email: email, password: password,);
-      _auth.currentUser! .updateDisplayName(name);
+      UserCredential newUser = await _auth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      _auth.currentUser!.updateDisplayName(name);
       newUser.user!.sendEmailVerification();
       _status = AuthStatus.successful;
     } on FirebaseAuthException catch (e) {
@@ -28,17 +34,18 @@ class AuthenticationService {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
       _status = AuthStatus.successful;
-    } on FirebaseAuthException catch(e) {
+    } on FirebaseAuthException catch (e) {
       _status = AuthExceptionHandler.handleAuthException(e);
     }
     return _status;
   }
 
-  Future <AuthStatus> resetPassword({required String email}) async{
+  Future<AuthStatus> resetPassword({required String email}) async {
     await _auth
         .sendPasswordResetEmail(email: email)
         .then((value) => _status = AuthStatus.successful)
-        .catchError((e) => _status = AuthExceptionHandler.handleAuthException(e));
+        .catchError(
+            (e) => _status = AuthExceptionHandler.handleAuthException(e));
     return _status;
   }
 
@@ -50,7 +57,8 @@ class AuthenticationService {
 
   signInWithGoogle() async {
     //begin interactive sign in process
-    final GoogleSignInAccount? gUser = await GoogleSignIn().signIn().catchError((onError) {
+    final GoogleSignInAccount? gUser =
+        await GoogleSignIn().signIn().catchError((onError) {
       print("Error $onError");
     });
     //obtain auth details from request
@@ -65,6 +73,19 @@ class AuthenticationService {
     //finally, lets sign in
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
+
+  //Phone Authentication
+  Future<void> phoneAuthentication(String phoneNo) async {
+    await _auth.verifyPhoneNumber(
+      phoneNumber: phoneNo,
+      verificationCompleted: (credential) async {
+        await _auth.signInWithCredential(credential);
+      },
+      codeSent: (verificationId, resendToken) {
+        // this.verificationId.value = verificationId;
+      },
+      codeAutoRetrievalTimeout: (verificationId) {},
+      verificationFailed: (e) {},
+    );
+  }
 }
-
-

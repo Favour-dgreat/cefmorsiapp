@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 class AppTextTheme {
   static TextTheme lightTextTheme = TextTheme(
-        headline2: GoogleFonts.montserrat(
+        displayMedium: GoogleFonts.montserrat(
           color: Colors.black87,
         ),
-        subtitle2: GoogleFonts.poppins(
+        titleSmall: GoogleFonts.poppins(
           color: Colors.black54,
           fontSize: 24,
         ),
