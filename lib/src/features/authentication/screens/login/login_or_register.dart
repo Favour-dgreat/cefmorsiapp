@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:CMI/src/features/authentication/authentication/screens/login/login.dart';
+import 'package:CMI/src/features/authentication/screens/login/login.dart';
 import 'package:CMI/src/features/authentication/screens/register/register.dart';
 
 class LoginOrRegister extends StatefulWidget {

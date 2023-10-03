@@ -1,18 +1,23 @@
-import 'package:CMI/src/constants/sizes.dart';
+import 'package:CMI/src/constants/text_strings.dart';
+import 'package:CMI/src/features/authentication/screens/forget_password/forget_password_options/forget_password_model_bottom_sheet.dart';
+import 'package:CMI/src/features/authentication/screens/login/login_form_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:CMI/src/common_widgets/square_tile.dart';
-import 'package:CMI/src/features/authentication/controllers/auth_service.dart';
 import 'package:CMI/src/features/authentication/screens/register/register.dart';
+import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../common_widgets/my_button.dart';
 import '../../../../common_widgets/my_textfield.dart';
 import '../../../../common_widgets/snack_bar.dart';
 import '../../../../constants/image_strings.dart';
-import '../../../../utils/loader.dart';
+import '../../../../constants/sizes.dart';
+import '../../controllers/auth_service.dart';
 import '../../controllers/firebase_exceptions.dart';
-import '../Reset_Password/reset_password.dart';
-import '../welcome/welcome_screen.dart';
+import '../../screens/Reset_Password/reset_password.dart';
+import '../../screens/welcome/welcome_screen.dart';
+import '../../../../utils/loader.dart';
+import '../forget_password/forget_password_options/forget_password_btn_widget.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String id = 'login_screen';
@@ -69,223 +74,102 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
-    return Scaffold(
-      backgroundColor: Colors.grey[300],
-      body: Center(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const SizedBox(height: 50),
-              const Image(
-                image: AssetImage(tAuthLogo),
-              ),
-              const SizedBox(height: 50),
-              Text(
-                'Sign In',
-                style: TextStyle(
-                    color: HexColor("#1E1E1E"),
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 30),
-              MyTextField(
-                controller: _emailController,
-                obscureText: false,
-                decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.email, color: HexColor("#309C96")),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(40.0),
-                    borderSide: const BorderSide(color: Colors.white),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey.shade400),
-                    borderRadius: BorderRadius.circular(40.0),
-                  ),
-                  fillColor: Colors.grey.shade200,
-                  filled: true,
-                  hintText: ("Email address"),
-                  // ignore: prefer_const_constructors
-                  hintStyle: TextStyle(
-                    fontSize: 15.0,
-                    color: Colors.black,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 30),
-              MyTextField(
-                controller: _passwordController,
-                obscureText: _obscureText,
-                decoration: InputDecoration(
-                  prefixIcon:
-                      Icon(Icons.key_rounded, color: HexColor("#309C96")),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(40.0),
-                    borderSide: const BorderSide(color: Colors.white),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey.shade400),
-                    borderRadius: BorderRadius.circular(40.0),
-                  ),
-                  fillColor: Colors.grey.shade200,
-                  filled: true,
-                  hintText: ("Password"),
-                  hintStyle: const TextStyle(
-                    fontSize: 15.0,
-                    color: Colors.black,
-                  ),
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                      _obscureText ? Icons.visibility : Icons.visibility_off,
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        _obscureText = !_obscureText;
-                      });
-                    },
-                  ),
-                  labelText: 'Password',
-                ),
-              ),
-              SizedBox(height: 10),
-              Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+    final size = MediaQuery.of(context).size;
+    return SafeArea(
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Container(
+            padding: const EdgeInsets.all(tDefaultSize),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Container(
-                      margin: EdgeInsets.only(left: 20),
-                      child: Checkbox(
-                        value: _rememberPassword,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            _rememberPassword = value!;
-                          });
-                        },
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(2),
+                    FormHeaderWidget(
+                      image: tWelcomeScreenImage,
+                      title: tLoginTitle,
+                      subTitle: tLoginSubTitle,
+                    ),
+                  ],
+                ),
+                const LoginForm(),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const Text("OR"),
+                    SizedBox(
+                      width: double.infinity,
+                      height: 50,
+                      child: OutlinedButton.icon(
+                        icon: const Image(
+                          image: AssetImage(tGoogleLogoImage),
+                          width: 20.0,
                         ),
-                        visualDensity: VisualDensity(
-                          horizontal: VisualDensity.maximumDensity,
-                          vertical: VisualDensity.maximumDensity,
-                        ),
-                        activeColor: ColorToHex(HexColor("#309C96")),
+                        onPressed: () {},
+                        label: const Text("Sign-in with Google"),
                       ),
                     ),
-                    Text('Remember me'),
-                    GestureDetector(
-                      onTap: () {
-                        
+                    const SizedBox(
+                      height: tFormHeight - 20,
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                        Get.to(() => const RegisterPage());
                       },
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 30.0,
-                        ),
-                        child: TextButton(
-                          onPressed: () {
-                            showBottomSheet(context: context, builder: (context) => Container(
-                              padding: EdgeInsets.all(tDefaultSize),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                              ),
-                            ),
-                            );
-                          },
-                          child: Text(
-                            'Forgot Password?',
-                            style: TextStyle(
-                              fontSize: 15,
-                              color: HexColor("#FA172C"),
-                            ),
-                          ),
-                        ),
+                      child: Text.rich(
+                        TextSpan(
+                            text: "Don't have an account?",
+                            style: Theme.of(context).textTheme.bodyLarge,
+                            children: [
+                              TextSpan(
+                                  text: "Sign up",
+                                  style: TextStyle(color: HexColor("#309C96")))
+                            ]),
                       ),
-                    )
-                  ],
-                ),
-              ),
-              const SizedBox(height: 25),
-              MyButton(
-                text: "Sign in",
-                onPressed: () async {
-                  if (_key.currentState!.validate()) {
-                    LoaderX.show(context);
-                    final _status = await _authService.login(
-                      email: _emailController.text.trim(),
-                      password: _passwordController.text,
-                    );
-
-                    if (_status == AuthStatus.successful) {
-                      LoaderX.hide();
-                      Navigator.pushNamed(context, HomeScreen.id);
-                    } else {
-                      LoaderX.hide();
-                      final error =
-                          AuthExceptionHandler.generateErrorMessage(_status);
-                      CustomSnackBar.showErrorSnackBar(
-                        context,
-                        message: error,
-                      );
-                    }
-                  }
-                },
-              ),
-              const SizedBox(height: 30),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Divider(thickness: 0.5, color: Colors.grey[400]),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10.0),
-                      child: Text('Or'),
-                    ),
-                    Expanded(
-                      child: Divider(thickness: 0.5, color: Colors.grey[400]),
                     ),
                   ],
-                ),
-              ),
-              const SizedBox(height: 30),
-              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                SquareTile(
-                  onTap: () => AuthenticationService().signInWithGoogle(),
-                  imagePath: 'assets/images/gg.png',
-                ),
-                const SizedBox(width: 10),
-                SquareTile(
-                  imagePath: 'assets/images/apple.png',
-                  onTap: () {},
                 )
-              ]),
-              const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Don\'t have an account?',
-                    style: TextStyle(color: Colors.grey[700]),
-                  ),
-                  const SizedBox(
-                    width: 4,
-                  ),
-                  GestureDetector(
-                    onTap: () => Navigator.pushNamed(context, RegisterPage.id),
-                    child: Text(
-                      'Sign up',
-                      style: TextStyle(
-                          color: HexColor("#309C96"),
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ],
-              )
-            ],
+              ],
+            ),
           ),
         ),
       ),
+    );
+  }
+}
+
+class FormHeaderWidget extends StatelessWidget {
+  const FormHeaderWidget({
+    super.key,
+    this.heightBetween,
+    required this.image,
+    required this.title,
+    required this.subTitle,
+    this.imageHeight = 0.2,
+    this.textAlign,
+    this.crossAxisAlignment = CrossAxisAlignment.start,
+  });
+
+  final String image, title, subTitle;
+  final double? heightBetween;
+  final CrossAxisAlignment crossAxisAlignment;
+  final double imageHeight;
+  final TextAlign? textAlign;
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    return Column(
+      children: [
+        Image(image: AssetImage(image), height: size.height * imageHeight),
+        SizedBox(height: heightBetween),
+        Text(title,
+            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w600)),
+        Text(subTitle,
+            textAlign: textAlign, style: Theme.of(context).textTheme.bodyLarge),
+      ],
     );
   }
 }

@@ -1,10 +1,11 @@
+import 'package:CMI/src/features/authentication/screens/forget_password/forget_password_mail/forget_password_mail.dart';
+import 'package:CMI/src/features/authentication/screens/splash_screen/splash_screen.dart';
 import 'package:CMI/src/repository/authentication_epository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'Screens/routes.dart';
-import 'package:CMI/src/features/authentication/authentication/screens/login/login.dart';
+import 'package:CMI/src/features/authentication/screens/login/login.dart';
 import 'package:CMI/src/utils/theme.dart';
-import 'Screens/apphome.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 void main() async {
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return  GetMaterialApp(
+    return GetMaterialApp(
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       defaultTransition: Transition.leftToRightWithFade,

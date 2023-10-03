@@ -2,13 +2,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:CMI/src/features/authentication/controllers/firebase_exceptions.dart';
-
+import 'dart:async';
 class AuthenticationService {
   final _auth = FirebaseAuth.instance;
   static late AuthStatus _status;
 
-
-  Future<AuthStatus> createAccount({
+  FutureOr<AuthStatus> createAccount({
     required String email,
     required String password,
     required String name,
@@ -27,7 +26,7 @@ class AuthenticationService {
     return _status;
   }
 
-  Future<AuthStatus> login({
+  FutureOr<AuthStatus> login({
     required String email,
     required String password,
   }) async {
@@ -40,7 +39,7 @@ class AuthenticationService {
     return _status;
   }
 
-  Future<AuthStatus> resetPassword({required String email}) async {
+  FutureOr<AuthStatus> resetPassword({required String email}) async {
     await _auth
         .sendPasswordResetEmail(email: email)
         .then((value) => _status = AuthStatus.successful)
@@ -49,7 +48,7 @@ class AuthenticationService {
     return _status;
   }
 
-  Future<void> logout() async {
+  FutureOr<void> logout() async {
     await _auth.signOut();
   }
 
@@ -75,7 +74,7 @@ class AuthenticationService {
   }
 
   //Phone Authentication
-  Future<void> phoneAuthentication(String phoneNo) async {
+  FutureOr<void> phoneAuthentication(String phoneNo) async {
     await _auth.verifyPhoneNumber(
       phoneNumber: phoneNo,
       verificationCompleted: (credential) async {

@@ -3,7 +3,7 @@ import 'package:CMI/src/features/authentication/screens/Reset_Password/reset_pas
 import 'package:CMI/src/features/authentication/screens/register/register.dart';
 import 'package:CMI/src/features/authentication/screens/welcome/welcome_screen.dart';
 
-import '../src/features/authentication/authentication/screens/login/login.dart';
+import '../src/features/authentication/screens/login/login.dart';
 
 class MyRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
