@@ -3,6 +3,7 @@ import 'package:CMI/src/constants/image_strings.dart';
 import 'package:CMI/src/constants/text_strings.dart';
 import 'package:CMI/src/features/core/screens/dashboard/widgets/appbar.dart';
 import 'package:CMI/src/features/core/screens/dashboard/widgets/categories.dart';
+import 'package:CMI/src/features/core/screens/dashboard/widgets/categoriesb.dart';
 import 'package:CMI/src/features/core/screens/dashboard/widgets/search.dart';
 import 'package:flutter/material.dart';
 
@@ -40,9 +41,13 @@ class Dashboard extends StatelessWidget {
               const SizedBox(
                 height: tDashboardPadding,
               ),
-              categoriesB(txtTheme: txtTheme),
+              // categoriesB(txtTheme: txtTheme),
               const SizedBox(
                 height: tDashboardPadding,
+              ),
+              Text(
+                tDashboardTopCourses,
+                style: txtTheme.headlineSmall?.apply(fontSizeFactor: 1.2),
               ),
               DashboardCategories(txtTheme: txtTheme),
               const SizedBox(

@@ -26,7 +26,8 @@ const String tDashboardHeading = "Explore";
 const String tDashboardSearch = "Search...";
 const String tDashboardBannerTitle2 = "AFD";
 const String tDashboardButton = "View All";
-const String tDashboardTopCourses = "Top Courses";
+const String tDashboardTopCourses = "Books";
+const String tDashboardMonthlyArticles = "Monthly Theme";
 const String tDashboardBannerSubTitle = "10 lessons";
 const String tDashBoardBannerTitle1 = "Android for Beginners";
 

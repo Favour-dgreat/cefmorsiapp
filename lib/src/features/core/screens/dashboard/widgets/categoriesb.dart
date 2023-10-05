@@ -29,7 +29,7 @@ class categoriesB extends StatelessWidget {
                 children: [
                   Container(
                     width: 45,
-                    height: 45,
+                    height: 85,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: tDarkColor),
