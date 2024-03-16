@@ -3,7 +3,6 @@ import 'package:CMI/src/constants/image_strings.dart';
 import 'package:CMI/src/constants/text_strings.dart';
 import 'package:CMI/src/features/core/screens/dashboard/widgets/appbar.dart';
 import 'package:CMI/src/features/core/screens/dashboard/widgets/categories.dart';
-import 'package:CMI/src/features/core/screens/dashboard/widgets/categoriesb.dart';
 import 'package:CMI/src/features/core/screens/dashboard/widgets/search.dart';
 import 'package:flutter/material.dart';
 

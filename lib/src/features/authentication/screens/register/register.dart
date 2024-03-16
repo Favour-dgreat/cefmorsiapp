@@ -1,27 +1,21 @@
 import 'package:CMI/src/features/authentication/controllers/signup_controller.dart';
 import 'package:CMI/src/features/authentication/screens/forget_password/forget_password_otp/otp_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:CMI/src/common_widgets/square_tile.dart';
 import 'package:CMI/src/features/authentication/controllers/auth_service.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
 import '../../../../common_widgets/my_button.dart';
 import '../../../../common_widgets/my_textfield.dart';
-import '../../../../common_widgets/snack_bar.dart';
 import '../../../../constants/image_strings.dart';
-import '../../../../utils/loader.dart';
-import '../../controllers/firebase_exceptions.dart';
-import '../../controllers/signup_controller.dart';
 import '../login/login.dart';
 
 class RegisterPage extends StatefulWidget {
   static const String id = 'signup_screen';
   final Function()? onTap;
-  const RegisterPage({
+  const RegisterPage({ 
     Key? key,
     this.onTap,
-  }) : super(key: key);
+  }) : super(key: key);   
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();

@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.flutter_app_testing">
    <application
+        android:name="androidx.multidex.MultiDexApplication"
         android:label="flutter_app_testing"
-        android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"

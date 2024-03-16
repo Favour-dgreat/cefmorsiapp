@@ -1,5 +1,4 @@
 import 'dart:ui';
-import 'package:hexcolor/hexcolor.dart';
 
 const tPrimaryColor = Color(0xFFFFE400);
 const tSecondaryColor = Color(0xFF272727);

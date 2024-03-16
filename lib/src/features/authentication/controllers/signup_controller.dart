@@ -12,7 +12,7 @@ class SignUpController extends GetxController {
 
   void registerUser(String email, String password) {
     String? error = AuthenticationRepository.instance
-        .createUserWithEmailAndPassword(email, password) as String?;
+        .createUserWithEmailAndPassword(email, password) s String?;
     if (error != null) {
       Get.showSnackbar(GetSnackBar(
         message: error.toString(),

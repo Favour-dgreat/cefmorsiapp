@@ -1,5 +1,3 @@
-import 'package:CMI/src/features/authentication/screens/forget_password/forget_password_mail/forget_password_mail.dart';
-import 'package:CMI/src/features/authentication/screens/splash_screen/splash_screen.dart';
 import 'package:CMI/src/repository/authentication_epository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

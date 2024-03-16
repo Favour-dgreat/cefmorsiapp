@@ -6,15 +6,12 @@ class loginWithEmailAndPasswordFailure {
 
   factory loginWithEmailAndPasswordFailure.code(String code) {
     switch (code) {
-      case 'weak-password':
+      case 'wrong-password':
         return const loginWithEmailAndPasswordFailure(
-            'Please enter a stronger password');
+            'You entered a wrong password');
       case 'invalid-email':  
         return const loginWithEmailAndPasswordFailure(
-            'Email is not valid or badly formatted');
-      case 'email-already-in-use':
-        return const loginWithEmailAndPasswordFailure(
-            'An account already exists for that email');
+            'Account not found');
       case 'operation-not-allowed':
         return const loginWithEmailAndPasswordFailure(
             'Operation not allowed. Please contact support');
